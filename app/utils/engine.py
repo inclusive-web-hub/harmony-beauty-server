@@ -33,6 +33,6 @@ async def init_engine_app(app: FastAPI) -> None:
     )
     database = client.get_default_database()
     assert database.name == app_settings.MONGODB_DATABASE
-    engine = AIOEngine(client=client, database="tinder")
+    engine = AIOEngine(client=client, database="shop")
     app.state.client = client
     app.state.engine = engine

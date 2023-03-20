@@ -1,37 +1,16 @@
-# Brave Date Server
+# Harmony Beauty Server
 
 <div align="center">
 
 [![linting: pylint](https://img.shields.io/badge/linting-pylint-yellowgreen)](https://github.com/PyCQA/pylint)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Static typing: mypy](http://www.mypy-lang.org/static/mypy_badge.svg)](http://mypy-lang.org/)
-[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/brave-date/brave-date-server/main.svg)](https://results.pre-commit.ci/latest/github/brave-date/brave-date-server/main)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 ![Codeql](https://github.com/github/docs/actions/workflows/codeql.yml/badge.svg)
 
 </div>
 
-[![Architecture](https://github.com/brave-date/brave-date/blob/docs/docs/static/images/architecture.png)](https://github.com/brave-date/brave-date-server)
-
-A Fully Async-based backend for [Brave Date](https://github.com/brave-date/brave-date).
-
-## Table of Contents
-
-- [Database](#database)
-- [Development Requirements](#development-requirements)
-- [Project Structure](#project-structure)
-- [Installation with Make](#installation-with-make)
-- [Access Swagger Documentation](#access-swagger-documentation)
-- [Access Redocs Documentation](#access-redocs-documentation)
-- [Deployments](#deployments)
-- [Core Dependencies](#core-dependencies)
-- [License](#license)
-
-## Database
-
-[![Brave Date Database Collections](https://brave-date.github.io/brave-date/static/images/collections.png)](https://brave-date.github.io/brave-date/data-models)
-
-You can refer to the official documentation for detailed information about [the database collections](https://docs.brave-date.wiseai.dev/data-models) and how data was modeled.
+A Fully Async-based backend for [Harmony Beauty](https://github.com/inclusive-web-hub/harmony-beauty).
 
 ## Development Requirements
 
@@ -51,12 +30,7 @@ You can refer to the official documentation for detailed information about [the 
 │   ├── models.py     # Module contains different data models for ODM to interact with database.
 │   ├── router.py     # Module contains different routes for this api.
 │   └── schemas.py    # Module contains different schemas for this api for validation purposes.
-├── matches       # Package contains different config files for the `matches` app.
-│   ├── crud.py       # Module contains different CRUD operations performed on the database.
-│   ├── models.py     # Module contains different models for ODMs to inteact with database.
-│   ├── router.py     # Module contains different routes for this api.
-│   └── schemas.py    # Module contains different schemas for this api for validation purposes.
-├── messages      # Package contains different config files for the `messages` app.
+├── cart       # Package contains different config files for the `cart` app.
 │   ├── crud.py       # Module contains different CRUD operations performed on the database.
 │   ├── models.py     # Module contains different models for ODMs to inteact with database.
 │   ├── router.py     # Module contains different routes for this api.
@@ -66,9 +40,6 @@ You can refer to the official documentation for detailed information about [the 
 │   ├── models.py     # Module contains different models for ODMs to inteact with database.
 │   ├── router.py     # Module contains different routes for this api.
 │   └── schemas.py    # Module contains different schemas for this api for validation purposes.
-├── websockets    # Package contains different config files for the `websockets` app.
-│   ├── manager.py    # Module contains the manager class definitions.
-│   ├── router.py     # Module contains different routes for this api.
 ├── utils         # Package contains different common utility modules for the whole project.
 │   ├── crypt.py
 │   ├── dependencies.py     # A utility script that yield a session for each request to make the crud call work.
@@ -141,7 +112,7 @@ Fill in the following environment variables in your .env file accordingly:
 MONGODB_USERNAME=
 MONGODB_PASSWORD=
 MONGODB_HOST=cluster_name.example.mongodb.net
-MONGODB_DATABASE=tinder
+MONGODB_DATABASE=shop
 ```
 
 ### 6. Create a Deta Account
@@ -193,7 +164,7 @@ make run
 
 ### Deploy locally with Compose v2
 
-First thing first, to run the entire platform, you have to clone the `brave-date` submodule using the following command:
+First thing first, to run the entire platform, you have to clone the `harmony-beauty` submodule using the following command:
 
 ```sh
 git submodule update --init --recursive
@@ -230,7 +201,7 @@ docker compose up
 Wait until the client service becomes available:
 
 ```sg
-brave-date-client-1      | Starting the development server...
+harmony-beauty-client-1      | Starting the development server...
 ```
 
 You can stop the running containers but issuing the following command on a separate terminal session:
@@ -243,100 +214,13 @@ make down
 
 You'll need to create a Deta account to use the Deta version of the APIs.
 
-[![Deploy on Deta](https://button.deta.dev/1/svg)](https://go.deta.dev/deploy?repo=https://github.com/brave-date/brave-date-server)
-
-#### Deta CLI
-
-Make sure you have Deta CLI installed on your machine. If it is not the case, just run the following command(on a Linux distro or Mac):
-
-```sh
-curl -fsSL https://get.deta.dev/cli.sh | sh
-```
-
-Manually add `/home/<user_name>/.deta/bin/deta` to your path:
-
-```sh
-PATH="/home/<user_name>/.deta/bin:$PATH"
-```
-
-Now you can deploy the app on a Deta Micro:
-
-```sh
-make deploy-deta
-```
-
-You can then use the Deta UI to check the logs and the URL the API is hosted on.
-
-**Notes**:
-
-- _Make sure your `.env` file is being provided with valid env vars values accordingly._
-
-- _The `main.py` file is used as an entry point for Deta. The same goes for `requirements.txt`._
-
-- _Deta Micros are limited to 512MB per deployment._
+[![Deploy on Deta](https://button.deta.dev/1/svg)](https://go.deta.dev/deploy?repo=https://github.com/inclusive-web-hub/harmony-beauty-server)
 
 ### Heroku
 
 This button will only deploy the server.
 
-[![Deploy on Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/brave-date/brave-date-server)
-
-#### Heroku CLI (Experimental: Deploy the entire stack)
-
-Note that this approach is not perfect because in the docker world, you should only have one service for each container, and you should use docker-compose to build and run more than two containers(e.g. one for the server and the other one for the client). However, Heroku doesn't support docker-compose with multiple services(except databases and such.). Hence running both services in one container.
-
-To do so, ensure you have already installed and configured the Heroku CLI on your machine. If it is not the case, you can install it on Ubuntu using the following command:
-
-```sh
-sudo wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
-```
-
-Now, you need to install the Heroku container registry plugin:
-
-```sh
-heroku plugins:install heroku-container-registry
-```
-
-Once that is completed, log in to your registry:
-
-```sh
-heroku container:login
-```
-
-Now, create a Heroku app:
-
-```sh
-heroku create <a unique app name>
-```
-
-You can list all your apps to verify that your recent app has been created:
-
-```sh
-heroku apps
-```
-
-Set your env variables in the `.env` file.
-
-Build your container image:
-
-```sh
-docker compose -f heroku-compose.yml build
-```
-
-Deploy to Heroku:
-
-```sh
-heroku container:push web --app <your heroku app name>; heroku logs --tail
-```
-
-Once the build and push are completed, you can run the following command in a separate shell to interact with the app:
-
-```sh
-heroku open --app=<your app name>
-```
-
-You can refer to [heroku dev center](https://devcenter.heroku.com/articles/local-development-with-docker-compose) for more info. Happy Herokuing!
-
+[![Deploy on Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/inclusive-web-hub/harmony-beauty-server)
 
 ## Core Dependencies
 
@@ -353,4 +237,4 @@ The following packages are the main dependencies used to build this project:
 
 ## License
 
-This project and the accompanying materials are made available under the terms and conditions of the [`MIT LICENSE`](https://github.com/brave-date/brave-date-server/blob/main/LICENSE).
+This project and the accompanying materials are made available under the terms and conditions of the [`MIT LICENSE`](https://github.com/inclusive-web-hub/harmony-beauty-server/blob/main/LICENSE).

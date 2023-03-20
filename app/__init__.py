@@ -1,6 +1,6 @@
 """
-A fully async based server for Brave Date built using FastAPI,
-MongoDB, pydantic, Motor, Redis, and Deta.
+A fully async based server for Harmony Beauty built using FastAPI,
+MongoDB, pydantic, ODMantic, and Deta.
 """
 
 

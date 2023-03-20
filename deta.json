@@ -1,5 +1,5 @@
 {
-  "description": "A Fully Async-based backend for Brave Date built using FastAPI, ODMantic, MongoDB, Deta, and friends.",
+  "description": "A Fully Async-based backend for Harmony Beauty built using FastAPI, ODMantic, MongoDB, Deta, and friends.",
   "env": [
     {
       "description": "This is the user name you'll be creating for remote accesses.",
@@ -20,10 +20,10 @@
       "value": ""
     },
     {
-      "description": "The name of the database you want to access, in our case, the `tinder` database.",
+      "description": "The name of the database you want to access, in our case, the `shop` database.",
       "key": "MONGODB_DATABASE",
       "required": true,
-      "value": "tinder"
+      "value": "shop"
     },
     {
       "description": "Secret used to sign the JWTs",
@@ -46,6 +46,6 @@
       "required": true
     }
   ],
-  "name": "brave-date",
+  "name": "harmony-beauty",
   "runtime": "python3.9"
 }

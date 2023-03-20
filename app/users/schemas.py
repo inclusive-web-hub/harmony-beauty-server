@@ -21,16 +21,13 @@ class UserObjectSchema(BaseModel):
     """
 
     id: str = Field(..., example="6386fc625c60cfd607e97b44")
-    first_name: str = Field(..., example="Your first name.")
-    last_name: str = Field(..., example="Your last name.")
-    birthday: str = Field(..., example=str(datetime.utcnow().date()))
-    gender: str = Field(..., example="man")
-    interests: str = Field(..., example="woman")
-    display_gender: int = Field(..., example=1)
-    passion: str = Field(..., example="swimming,cardio")
+    full_name: str = Field(..., example="Your full name.")
+    bio: Optional[str] = Field(..., example="bio.")
+    birthday: Optional[str] = Field(..., example=str(datetime.utcnow().date()))
     email: EmailStr = Field(..., example="user@test.com")
-    profile_picture: str = Field(..., example="A relative URL to Deta Drive.")
-    chat_status: Optional[str] = Field(default="online")
+    profile_picture: Optional[str] = Field(
+        ..., example="A relative URL to Deta Drive."
+    )
     user_status: Optional[int] = Field(default=1)
     user_role: Optional[str] = Field(default="regular")
     phone_number: Optional[str] = Field(default="12314")
@@ -54,13 +51,9 @@ class UserSchema(BaseModel):
         ...,
         example=UserObjectSchema(
             id="asdWQdqw123",
-            first_name="Your first name.",
-            last_name="Your last name.",
+            full_name="Your full name.",
             birthday=str(datetime.utcnow().date()),
-            gender="man",
-            interests="woman",
-            display_gender=1,
-            passion="swimming,cardio",
+            bio="your bio",
             email="user@test.com",
             profile_picture="A relative URL to Deta Drive.",
         ),
@@ -92,13 +85,9 @@ class UsersSchema(BaseModel):
         example=[
             UserObjectSchema(
                 id="asdWQdqw123",
-                first_name="Your first name.",
-                last_name="Your last name.",
+                full_name="Your full name.",
                 birthday=str(datetime.utcnow().date()),
-                gender="man",
-                interests="woman",
-                display_gender=1,
-                passion="swimming,cardio",
+                bio="your bio",
                 email="user@test.com",
                 profile_picture="A relative URL to Deta Drive.",
             ),
@@ -121,7 +110,7 @@ class PersonalInfo(BaseModel):
     A Pydantic class that defines the users schema for the updating user info.
     """
 
-    first_name: str = Field(..., example="First name.")
-    last_name: str = Field(..., example="Last Name.")
-    passion: str = Field(..., example="Cardio.")
+    full_name: str = Field(..., example="Full name.")
+    bio: str = Field(..., example="bio.")
+    birthday: str = Field(..., example="birthday.")
     phone_number: str = Field(..., example="123456789")

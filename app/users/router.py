@@ -56,22 +56,9 @@ async def get_user_profile(
             **jsonable_encoder(current_user)
         ),
         "status_code": 200,
-        "message": "Welcome to Brave Date.",
+        "message": "Welcome to Harmony Beauty.",
     }
     return results
-
-
-@router.get("/user/all", response_model=users_schemas.UsersSchema)
-async def get_all_users(
-    current_user: users_schemas.UserObjectSchema = Depends(
-        jwt.get_current_active_user
-    ),
-    session: AIOSession = Depends(dependencies.get_db_transactional_session),
-) -> Dict[str, Any]:
-    """
-    Fetch all users available in the app and not in the matches list.
-    """
-    return await users_crud.get_users(current_user.id, session)
 
 
 @router.get("/user/logout")

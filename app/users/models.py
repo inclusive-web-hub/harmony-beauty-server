@@ -17,20 +17,6 @@ from typing import (
 )
 
 
-class ChatStatus(str, Enum):
-    """
-    The ChatStatus enumeration
-
-    Args:
-        Enum (enum.Enum): Base enum class.
-    """
-
-    ONLINE = "online"
-    OFFLINE = "offline"
-    BUSY = "busy"
-    DONT_DISTURB = "don't disturb"
-
-
 class UserStatus(int, Enum):
     """
     The UserStatus enumeration
@@ -55,44 +41,6 @@ class UserRole(str, Enum):
     ADMIN = "admin"
 
 
-class UserGender(str, Enum):
-    """
-    The UserGender enumeration
-
-    Args:
-        Enum (enum.Enum): Base enum class.
-    """
-
-    MAN = "man"
-    WOMAN = "woman"
-    OTHER = "other"
-
-
-class GenderInterests(str, Enum):
-    """
-    The GenderInterests enumeration
-
-    Args:
-        Enum (enum.Enum): Base enum class.
-    """
-
-    MAN = "man"
-    WOMAN = "woman"
-    EVERYONE = "everyone"
-
-
-class DisplayGender(int, Enum):
-    """
-    The DisplayGender enumeration
-
-    Args:
-        Enum (enum.Enum): Base enum class.
-    """
-
-    YES = 1
-    NO = 0
-
-
 class User(Model):
     """
     The User model
@@ -101,18 +49,13 @@ class User(Model):
         Model (odmantic.Model): Odmantic base model.
     """
 
-    first_name: str = Field(index=True)
-    last_name: str = Field(...)
-    birthday: str = Field(...)
-    gender: UserGender = Field(...)
-    interests: GenderInterests = Field(...)
-    display_gender: DisplayGender = Field(...)
-    passion: str = Field(...)
+    full_name: str = Field(index=True)
+    birthday: Optional[str] = Field(default="")
+    bio: Optional[str] = Field(default="")
     email: EmailStr = Field(index=True)
     password: str = Field(index=True)
-    profile_picture: str = Field(...)
-    phone_number: Optional[str]
-    chat_status: Optional[ChatStatus] = Field(default=ChatStatus.ONLINE.value)
+    profile_picture: Optional[str] = Field(default="")
+    phone_number: Optional[str] = Field(default="")
     user_status: Optional[UserStatus] = Field(default=UserStatus.ACTIVE.value)
     user_role: Optional[UserRole] = Field(default=UserRole.REGULAR.value)
     creation_date: Optional[datetime] = Field(default_factory=datetime.utcnow)
@@ -135,7 +78,6 @@ class User(Model):
 
 
 __all__ = [
-    "ChatStatus",
     "UserStatus",
     "UserRole",
     "User",

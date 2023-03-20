@@ -1,12 +1,12 @@
 [tool.poetry]
-name = "brave-date-server"
+name = "harmony-beauty-server"
 version = "0.1.0"
-description = "A fully async based backend for Brave Date built using FastAPI, MongoDB, Pydantic, SQLAlchemy, Redis Pub/Sub, and Deta."
+description = "A fully async based backend for Harmony Beauty built using FastAPI, MongoDB, Pydantic, ODMantic and Deta."
 authors = ["wiseaidev <business@wiseai.dev>"]
 license = "MIT"
 readme = "README.md"
-repository = "https://github.com/brave-date/brave-date-server"
-homepage = "https://github.com/brave-date/brave-date-server"
+repository = "https://github.com/inclusive-web-hub/harmony-beauty-server"
+homepage = "https://github.com/inclusive-web-hub/harmony-beauty-server"
 documentation = ""
 classifiers = [
     "Development Status :: 2 - Pre-Alpha",
@@ -15,7 +15,7 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.9",
 ]
-keywords = ["python", "fastapi", "MongoDB", "SQLAlchemy", "Deta", "tinder clone", "Brave Date"]
+keywords = ["python", "fastapi", "MongoDB", "ODMantic", "Deta", "Harmony Beauty"]
 packages = [
     { include = "app" },
     { include = "LICENSE" },

@@ -21,9 +21,6 @@ from app.auth import (
     crud as auth_crud,
     models as auth_models,
 )
-from app.matches import (
-    models as matches_models,
-)
 from app.users import (
     models as users_models,
     schemas as users_schemas,
@@ -58,33 +55,6 @@ async def remove_token(
             }
         )
         await session.save(token_obj)
-
-
-async def get_users(user_id: ObjectId, session: AIOSession) -> Dict[str, Any]:
-    """
-    A method for fetching all users registered in the app.
-
-    Args:
-        user_id (bson.ObjectId) : A user id.
-        session (odmantic.session.AIOSession) : odmantic session object.
-    """
-    users = await session.find(
-        users_models.User, users_models.User.id != user_id
-    )
-    match = await session.find_one(
-        matches_models.Match, matches_models.Match.user == user_id
-    )
-    matches_ids = []
-    if match:
-        matches_ids = match.matches
-    result = []
-    # return users not in matches
-    for user in users:
-        if user.id not in matches_ids:
-            user = user.dict()
-            user["id"] = str(user["id"])
-            result.append(user)
-    return {"status_code": 200, "result": result}
 
 
 async def update_profile_picture(
@@ -162,10 +132,10 @@ async def update_user_info(
     """
     current_user.update(
         {
-            "first_name": personal_info.first_name,
-            "last_name": personal_info.last_name,
-            "passion": personal_info.passion,
-            "phone_number": personal_info.passion,
+            "full_name": personal_info.full_name,
+            "bio": personal_info.bio,
+            "birthday": personal_info.birthday,
+            "phone_number": personal_info.phone_number,
             "modified_date": datetime.utcnow(),
         }
     )

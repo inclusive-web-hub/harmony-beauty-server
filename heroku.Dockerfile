@@ -30,9 +30,9 @@ RUN apt-get update \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
-COPY ./brave-date/package.json  ./
-COPY ./brave-date/src ./src
-COPY ./brave-date/public ./public
+COPY ./harmony-beauty/package.json  ./
+COPY ./harmony-beauty/src ./src
+COPY ./harmony-beauty/public ./public
 
 RUN npm install --force
 

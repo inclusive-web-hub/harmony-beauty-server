@@ -33,7 +33,7 @@ class Settings(BaseSettings):
         >>> MONGODB_HOST=svc-123456789.svc.MONGODB.com
         >>> MONGODB_USERNAME=admin
         >>> MONGODB_PASSWORD=51R0NGPO$$W0RD
-        >>> MONGODB_DATABASE=tinder
+        >>> MONGODB_DATABASE=shop
         >>> JWT_SECRET_KEY=123SDA23sa
         >>> DEBUG="" # "" means production, "test" means testing, "info" means development.
         >>> CORS_ORIGINS="https://app-name.herokuapp.com,http://app-name.pages.dev"

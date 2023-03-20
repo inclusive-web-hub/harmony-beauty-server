@@ -21,20 +21,11 @@ from app.auth import (
 from app.config import (
     settings,
 )
-from app.matches import (
-    router as matches_router,
-)
-from app.messages import (
-    router as messages_router,
-)
 from app.users import (
     router as users_router,
 )
 from app.utils import (
     engine,
-)
-from app.websockets import (
-    router as websockets_router,
 )
 
 logger = logging.getLogger(__name__)
@@ -53,8 +44,8 @@ def get_app() -> FastAPI:
         app = FastAPI(
             docs_url="/docs",
             redoc_url="/redocs",
-            title="Brave Chat Server",
-            description="The server side of Brave Chat.",
+            title="Harmony Beauty Server",
+            description="The server side of Harmony Beauty.",
             version="1.0",
             openapi_url="/api/v1/openapi.json",
         )
@@ -70,8 +61,8 @@ def get_app() -> FastAPI:
     app = FastAPI(
         docs_url="/docs",
         redoc_url="/redocs",
-        title="Brave Date Server",
-        description="The server side of Brave Date.",
+        title="Harmony Beauty Server",
+        description="The server side of Harmony Beauty.",
         version="0.1.0",
         openapi_url="/api/v1/openapi.json",
     )
@@ -110,18 +101,15 @@ def get_app() -> FastAPI:
 
     @app.get("/api")
     async def root() -> Dict[str, str]:
-        return {"message": "Welcome to the Brave Date Server."}
+        return {"message": "Welcome to the Harmony Beauty Server."}
 
     app.include_router(auth_router.router, tags=["auth"])
     app.include_router(users_router.router, tags=["users"])
-    app.include_router(matches_router.router, tags=["matches"])
-    app.include_router(messages_router.router, tags=["messages"])
-    app.include_router(websockets_router.router, tags=["websockets"])
 
     return app
 
 
-tinder_app = get_app()
+shop_app = get_app()
 
 
 def serve() -> None:
@@ -129,9 +117,8 @@ def serve() -> None:
     A method that run a uvicorn command.
     """
     try:
-
         uvicorn.run(
-            "app.main:tinder_app",
+            "app.main:shop_app",
             host="0.0.0.0",
             port=8000,
             reload=True,

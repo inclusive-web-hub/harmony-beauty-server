@@ -27,13 +27,9 @@ class UserSchema(BaseModel):
         ...,
         example=users_schemas.UserObjectSchema(
             id="asdWQdqw123",
-            first_name="Your first name.",
-            last_name="Your last name.",
+            full_name="Your full name.",
+            bio="Your bio",
             birthday=str(datetime.utcnow().date()),
-            gender="man",
-            interests="woman",
-            display_gender=1,
-            passion="swimming,cardio",
             email="user@test.com",
             profile_picture="A relative URL to Deta Drive.",
         ),
@@ -65,16 +61,9 @@ class UserCreate(BaseModel):
     A Pydantic class that defines the user schema for sign up.
     """
 
-    first_name: str = Field(..., example="Your first name.")
-    last_name: str = Field(..., example="Your last name.")
-    birthday: str = Field(..., example=str(datetime.utcnow().date()))
-    gender: str = Field(..., example="man")
-    interests: str = Field(..., example="woman")
-    display_gender: int = Field(..., example=1)
-    passion: str = Field(..., example="swimming,cardio")
+    full_name: str = Field(..., example="Your full name.")
     email: EmailStr = Field(..., example="user@test.com")
     password: str = Field(..., example="A secure password goes here.")
-    profile_picture: str = Field(..., example="A relative URL to Deta Drive.")
 
 
 class Token(BaseModel):

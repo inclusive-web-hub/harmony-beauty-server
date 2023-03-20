@@ -4,7 +4,7 @@
       "url": "heroku/python"
     }
   ],
-  "description": "A Fully Async-based backend for Brave Date built using FastAPI, ODMantic, MongoDB, Deta, and friends.",
+  "description": "A Fully Async-based backend for Harmony Beauty built using FastAPI, ODMantic, MongoDB, Deta, and friends.",
   "env": {
     "DEBUG": {
       "description": "This environment variable defines the debug level.`` means production. `info` to access the docs.",
@@ -37,9 +37,9 @@
       "required": true
     },
     "MONGODB_DATABASE": {
-      "description": "The name of the database you want to access, in our case, the `tinder` database.",
+      "description": "The name of the database you want to access, in our case, the `shop` database.",
       "required": false,
-      "value": "tinder"
+      "value": "shop"
     }
   },
   "formation": {
@@ -55,7 +55,7 @@
     "deta",
     "api"
   ],
-  "name": "brave-date-server",
-  "repository": "https://github.com/brave-date/brave-date-server",
+  "name": "harmony-beauty-server",
+  "repository": "https://github.com/inclusive-web-hub/harmony-beauty-server",
   "success_url": "/docs"
 }

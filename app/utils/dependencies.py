@@ -41,11 +41,11 @@ async def get_db_autocommit_session() -> AsyncGenerator[AIOSession, None]:
     """
 
     from app.main import (  # pylint: disable=C0415
-        tinder_app,
+        shop_app,
     )
 
     try:
-        session: AIOSession = tinder_app.state.engine.session()
+        session: AIOSession = shop_app.state.engine.session()
         await session.start()
         yield session
     finally:
